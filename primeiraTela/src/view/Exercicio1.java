@@ -15,9 +15,6 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Color;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
