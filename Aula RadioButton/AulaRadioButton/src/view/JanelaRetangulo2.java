@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Retangulo;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -72,17 +75,44 @@ public class JanelaRetangulo2 extends JFrame {
 		JRadioButton rdbtnPerimetro = new JRadioButton("Perímetro");
 		buttonGroup.add(rdbtnPerimetro);
 		
+		JLabel lblResultado = new JLabel(" ");
+		
 		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				float base = Float.valueOf(txtBase.getText());
+				float altura = Float.valueOf(txtAltura.getText());
+				Retangulo r = new Retangulo();
+				if(rdbtnArea.isSelected()) {
+					float area = r.calcularArea(base, altura);
+					lblResultado.setText(String.format("%.2f", area));
+				}
+				if(rdbtnPerimetro.isSelected()) {
+					float perimetro = r.calcularPerimetro(base, altura);
+					lblResultado.setText(String.format("%.2f", perimetro));
+				}
+			}
+		});
 		
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtBase.setText("");
+				txtAltura.setText("");
+				lblResultado.setText("");
+				rdbtnArea.setSelected(false);
+				rdbtnPerimetro.setSelected(false);
 			}
 		});
 		
 		JButton btnFechar = new JButton("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		
-		JLabel lblResultado = new JLabel(" ");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -94,14 +124,14 @@ public class JanelaRetangulo2 extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(137)
 					.addComponent(lblResultado))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(48, Short.MAX_VALUE)
-					.addComponent(btnCalcular, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-					.addGap(31))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(30, Short.MAX_VALUE)
+					.addComponent(btnCalcular, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addGap(14)
+					.addComponent(btnFechar, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addGap(21))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(48)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -132,10 +162,11 @@ public class JanelaRetangulo2 extends JFrame {
 					.addGap(18)
 					.addComponent(lblResultado)
 					.addGap(24)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnCalcular)
-						.addComponent(btnLimpar)
-						.addComponent(btnFechar))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnFechar)
+							.addComponent(btnLimpar))
+						.addComponent(btnCalcular))
 					.addGap(21))
 		);
 		contentPane.setLayout(gl_contentPane);
