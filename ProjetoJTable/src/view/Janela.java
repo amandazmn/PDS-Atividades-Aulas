@@ -152,23 +152,54 @@ public class Janela extends JFrame {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = txtNome.getText();
-				String cpf= txtCPF.getText();
-				String telefone = txtTelefone.getText();
-				String idade = txtIdade.getText();
-				String peso = txtPeso.getText();
-				String altura = txtAltura.getText();
+				int cpf = 0;
+				try {
+					cpf = Integer.parseInt(txtCPF.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do CPF precisa ser numérico inteiro.");
+					return;
+				}
+				int telefone = 0; 
+				try {
+					telefone = Integer.parseInt(txtTelefone.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do telefone precisa ser numérico inteiro.");
+					return;
+				}
+				int idade = 0; 
+				try {
+					idade = Integer.parseInt(txtIdade.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do idade precisa ser numérico inteiro.");
+					return;
+				}
+				float altura = 0;
+				try {
+					altura = Float.parseFloat(txtAltura.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do altura precisa ser numérico inteiro.");
+					return;
+				}
+				float peso = 0;
+				try {
+					peso = Float.parseFloat(txtPeso.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do peso precisa ser numérico.");
+					return;
+				}
 				
 				Pessoa p = new Pessoa();
 				p.setNome(nome);
-				p.setCpf(Integer.parseInt(cpf));
-				p.setTelefone(Integer.parseInt(telefone));
-				p.setIdade(Integer.parseInt(idade));
-				p.setPeso(Float.parseFloat(peso));
-				p.setAltura(Float.parseFloat(altura));
+				p.setCpf(cpf);
+				p.setTelefone(telefone);
+				p.setIdade(idade);
+				p.setPeso(peso);
+				p.setAltura(altura);
 				
 				listaPessoas.add(p);
 				
 				atualizarJTableModel();
+				JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi adicionada.");
 				limparCampos();
 				
 			}
@@ -180,7 +211,9 @@ public class Janela extends JFrame {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int idx_linha = table.getSelectedRow();
+				Pessoa p = listaPessoas.get(idx_linha);
 				listaPessoas.remove(idx_linha);
+				JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi excluída.");
 				atualizarJTableModel();
 				limparCampos();
 			}
@@ -193,20 +226,53 @@ public class Janela extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Pessoa p = listaPessoas.get(table.getSelectedRow());
 				String nome = txtNome.getText();
-				String cpf= txtCPF.getText();
-				String telefone = txtTelefone.getText();
-				String idade = txtIdade.getText();
-				String peso = txtPeso.getText();
-				String altura = txtAltura.getText();
+				int cpf = 0;
+				try {
+					cpf = Integer.parseInt(txtCPF.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do CPF precisa ser numérico inteiro.");
+					return;
+				}
+				int telefone = 0; 
+				try {
+					telefone = Integer.parseInt(txtTelefone.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do telefone precisa ser numérico inteiro.");
+					return;
+				}
+				int idade = 0; 
+				try {
+					idade = Integer.parseInt(txtIdade.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do idade precisa ser numérico inteiro.");
+					return;
+				}
+				float peso = 0;
+				try {
+					peso = Float.parseFloat(txtPeso.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do peso precisa ser numérico.");
+					return;
+				}
+				float altura = 0;
+				try {
+					altura = Float.parseFloat(txtAltura.getText());
+				} catch (Exception ex2) {
+					JOptionPane.showMessageDialog(null, "O tipo do altura precisa ser numérico inteiro.");
+					return;
+				}
 				
 				p.setNome(nome);
-				p.setCpf(Integer.parseInt(cpf));
-				p.setTelefone(Integer.parseInt(telefone));
-				p.setIdade(Integer.parseInt(idade));
-				p.setPeso(Float.parseFloat(peso));
-				p.setAltura(Float.parseFloat(altura));
+				p.setCpf(cpf);
+				p.setTelefone(telefone);
+				p.setIdade(idade);
+				p.setPeso(peso);
+				p.setAltura(altura);
 				
 				atualizarJTableModel();
+				
+				JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi atualizada.");
+				
 				limparCampos();
 				
 			}
