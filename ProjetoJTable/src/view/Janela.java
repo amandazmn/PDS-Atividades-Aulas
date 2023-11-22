@@ -212,8 +212,16 @@ public class Janela extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int idx_linha = table.getSelectedRow();
 				Pessoa p = listaPessoas.get(idx_linha);
-				listaPessoas.remove(idx_linha);
-				JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi excluída.");
+				String texto = "Você deseja excluir a pessoa " + p.getNome() + "?";
+				String titulo = "Confirmar exclusão";
+				int confirmacao = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+				if(confirmacao == 0) {
+					listaPessoas.remove(idx_linha);
+					JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi excluída.");
+				}
+				if(confirmacao == 1) {
+					JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " não foi excluída.");
+				}
 				atualizarJTableModel();
 				limparCampos();
 			}

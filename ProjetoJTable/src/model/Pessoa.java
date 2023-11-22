@@ -9,10 +9,6 @@ public class Pessoa {
 	private float peso;
 	private float altura;
 	
-	public void alterar(int linha) {
-		
-	}
-	
 	public String getNome() {
 		return nome;
 	}
