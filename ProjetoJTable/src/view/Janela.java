@@ -217,13 +217,14 @@ public class Janela extends JFrame {
 				int confirmacao = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
 				if(confirmacao == 0) {
 					listaPessoas.remove(idx_linha);
+					atualizarJTableModel();
+					limparCampos();
 					JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " foi excluída.");
 				}
 				if(confirmacao == 1) {
 					JOptionPane.showMessageDialog(null, "A pessoa " + p.getNome() + " não foi excluída.");
 				}
-				atualizarJTableModel();
-				limparCampos();
+				
 			}
 		});
 		btnExcluir.setBounds(162, 126, 89, 23);
@@ -266,7 +267,7 @@ public class Janela extends JFrame {
 				try {
 					altura = Float.parseFloat(txtAltura.getText());
 				} catch (Exception ex2) {
-					JOptionPane.showMessageDialog(null, "O tipo do altura precisa ser numérico inteiro.");
+					JOptionPane.showMessageDialog(null, "O tipo do altura precisa ser numérico.");
 					return;
 				}
 				
